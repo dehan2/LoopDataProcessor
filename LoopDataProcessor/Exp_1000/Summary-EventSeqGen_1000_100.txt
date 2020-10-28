@@ -1,0 +1,41 @@
+Total Elapsed time: 3454975.00ms
+
+Processed Time Fragments
+
+0	50
+50	50
+100	50
+150	5
+155	5
+160	5
+165	5
+170	5
+175	25
+200	100
+300	100
+400	25
+425	25
+450	50
+500	100
+600	25
+625	25
+650	25
+675	25
+700	50
+750	50
+800	100
+900	100
+
+
+ Failed Time Fragments
+
+0.00	100.00	97.26	Fail at 97.259607s/185951th event - No Corr Entity Found
+100.00	100.00	92.77	Fail at 92.767532s/178078th event - Unknown
+400.00	100.00	50.35	Fail at 50.352544s/95670th event - Unknown
+600.00	100.00	33.02	Fail at 33.018313s/62784th event - Minus Degree Polynomial
+700.00	100.00	61.77	Fail at 61.770493s/117852th event - Unknown
+150.00	50.00	20.33	Fail at 20.325449s/38348th event - Minus Degree Polynomial
+400.00	50.00	49.75	Fail at 49.749575s/94542th event - No Corr Entity Found
+600.00	50.00	33.02	Fail at 33.018313s/62784th event - Minus Degree Polynomial
+650.00	50.00	37.40	Fail at 37.403265s/70821th event - Minus Degree Polynomial
+150.00	25.00	20.33	Fail at 20.325449s/38348th event - Minus Degree Polynomial
