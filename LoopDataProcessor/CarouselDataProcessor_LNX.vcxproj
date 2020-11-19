@@ -59,9 +59,11 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>WSL_1_0</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>WSL_1_0</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'" Label="Configuration">
     <UseDebugLibraries>false</UseDebugLibraries>
@@ -75,8 +77,57 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
   <ItemGroup>
+    <ClCompile Include="CarouselDataManager.cpp" />
+    <ClCompile Include="CarouselDataProcessor.cpp" />
   </ItemGroup>
-  <ItemDefinitionGroup />
+  <ItemGroup>
+    <ClInclude Include="CarouselDataManager.h" />
+    <ClInclude Include="ConstForCarouselDataProcessor.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\dev_vdrc\VUFS_LNX\VUFS_LNX.vcxproj">
+      <Project>{4acdc5aa-c316-4b32-b55a-65bb0cd09f64}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\dev_vdrc\V_API_LNX\V_API_LNX.vcxproj">
+      <Project>{79abae7c-42bd-4008-af33-2cefda4246f0}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\dev_vdrc\V_Core_LNX\V_Core_LNX.vcxproj">
+      <Project>{4938fe04-a882-4127-b812-4d83931bbc5d}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\dev_vdrc\V_Geo_GeoModel_LNX\V_Geo_GeoModel_LNX.vcxproj">
+      <Project>{09f59a7d-e845-4707-8a1c-4fbfd786825d}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\dev_vdrc\V_Geo_Voronoi3D_LNX\V_Geo_Voronoi3D_LNX.vcxproj">
+      <Project>{cf6336c9-fedf-48f1-a2dd-82c45df00886}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DynamicVoronoiDiagram\DynamicVD3DLib\DynamicVDLib_LNX.vcxproj">
+      <Project>{433b33e5-cb59-4ca1-a5ca-51cb45e7c948}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DynamicVoronoiDiagram\RPolyPlusPlus\RPolyPlusPlus_LNX.vcxproj">
+      <Project>{adab40c3-f4ee-4da0-9c9f-f4acf5228330}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\CarouselLib\CarouselLib_LNX.vcxproj">
+      <Project>{07afdd6d-59d5-4c17-ad08-d8745dcfcaa1}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\CarouselLib;..\..\DynamicVoronoiDiagram\RPolyPlusPlus;..\..\DynamicVoronoiDiagram\DynamicVD3DLib\include;..\..\dev_vdrc\src\V\VUFS\include;..\..\dev_vdrc\src\V\Geo_tier\GeoModel\include;..\..\dev_vdrc\src\V\Geo_tier\VoronoiDiagram3D\include;..\..\dev_vdrc\src\V\Core_tier\include;..\..\dev_vdrc\src\V\API_tier\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CppLanguageStandard>c++14</CppLanguageStandard>
+    </ClCompile>
+    <Link>
+      <LibraryDependencies>pthread;stdc++fs</LibraryDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\CarouselLib;..\..\DynamicVoronoiDiagram\RPolyPlusPlus;..\..\DynamicVoronoiDiagram\DynamicVD3DLib\include;..\..\dev_vdrc\src\V\VUFS\include;..\..\dev_vdrc\src\V\Geo_tier\GeoModel\include;..\..\dev_vdrc\src\V\Geo_tier\VoronoiDiagram3D\include;..\..\dev_vdrc\src\V\Core_tier\include;..\..\dev_vdrc\src\V\API_tier\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CppLanguageStandard>c++14</CppLanguageStandard>
+    </ClCompile>
+    <Link>
+      <LibraryDependencies>pthread;stdc++fs</LibraryDependencies>
+    </Link>
+  </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
 </Project>

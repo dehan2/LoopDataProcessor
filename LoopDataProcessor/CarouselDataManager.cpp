@@ -58,6 +58,8 @@ void CarouselDataManager::clear()
 
 void CarouselDataManager::propagate_EVENTSEQ_through_parallel_computation(const int& maxThreads, const double& fragmentSize)
 {
+	read_data_generation_command("CarouselDataCommand.txt");
+
 	generate_carousel_data();
 	double timeWindow = m_numSecondaryObjects;
 
@@ -127,6 +129,8 @@ void CarouselDataManager::propagate_EVENTSEQ_through_parallel_computation(const 
 
 void CarouselDataManager::generate_PPDB_through_parallel_computation(const int& maxThreads, const double& cutoffDistance)
 {
+	read_data_generation_command("CarouselDataCommand.txt");
+
 	string carouselDataFileName = make_carousel_data_file_name(m_numSecondaryObjects, m_approxLevel);
 	load_carousel_data_file(carouselDataFileName);
 
@@ -191,6 +195,56 @@ void CarouselDataManager::generate_PPDB_through_parallel_computation(const int& 
 	end = Clock::now();
 	double timeElapsed = chrono::duration_cast<chrono::milliseconds>(end - begin).count();
 	write_result_files_for_PPDB_generation(timeElapsed);
+}
+
+
+
+void CarouselDataManager::read_data_generation_command(const string& filePath)
+{
+	ifstream fin;
+	fin.open(filePath);
+
+	if (fin.is_open())
+	{
+		while (!fin.eof())
+		{
+			char lineData[256];
+			fin.getline(lineData, 256);
+
+			if (lineData[0] != '#')
+			{
+				char* context;
+				string delimiter = " \t";
+
+				string token = strtok_s(lineData, delimiter.c_str(), &context);
+				m_directory = token;
+
+				token = strtok_s(NULL, delimiter.c_str(), &context);
+				m_numSecondaryObjects = stoi(token);
+
+				token = strtok_s(NULL, delimiter.c_str(), &context);
+				m_approxLevel = stoi(token);
+
+				token = strtok_s(NULL, delimiter.c_str(), &context);
+				m_missDistance = stof(token);
+
+				token = strtok_s(NULL, delimiter.c_str(), &context);
+				m_secondaryCarouselRadius = stof(token);
+
+				token = strtok_s(NULL, delimiter.c_str(), &context);
+				m_distanceBetweenSecondaryCarousels = stof(token);
+
+				token = strtok_s(NULL, delimiter.c_str(), &context);
+				m_minSecondaryCarouselPeriod = stof(token);
+
+				token = strtok_s(NULL, delimiter.c_str(), &context);
+				m_maxSecondaryCarouselPeriod = stof(token);
+
+			}
+		}
+	}
+
+	fin.close();
 }
 
 

@@ -1,0 +1,2 @@
+% directory numSecondaryObjects approxLevel missDistance secondaryCarouselRadius distanceBetweenSecondaryCarousels min/maxSecondaryCarouselPeriod
+.\ 1000 100 0.1 10  1   90  110

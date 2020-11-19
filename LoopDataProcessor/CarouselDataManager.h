@@ -12,15 +12,18 @@ class CarouselDataManager
 private:
 
 	//Infos for Carousel Data Generation
+	int m_numSecondaryObjects = 1000;
 	int m_approxLevel = 100;
-	int m_numSecondaryObjects = 5000;
+	
 	double m_missDistance = 0.1;
 	double m_secondaryCarouselRadius = 10.0;
 	//double m_secondaryCarouselPeriod = 10.0;
 	double m_distanceBetweenSecondaryCarousels = 1;
-	double m_minSecondaryCarouselPeriod = 50.0;
-	double m_maxSecondaryCarouselPeriod = 100.0;
+	double m_minSecondaryCarouselPeriod = 90.0;
+	double m_maxSecondaryCarouselPeriod = 110.0;
 	
+	string m_directory;
+
 	list<CarouselObjectData> m_secondaryInfos;
 
 	list<thread*> m_workers;
@@ -60,6 +63,7 @@ public:
 	// SUB FUNCTIONS
 	//////////////////////////////////////////////////////////////////////////
 
+	void read_data_generation_command(const string& filePath);
 	void generate_carousel_data();
 
 	virtual void	load_carousel_data_file(const string& filePath);
